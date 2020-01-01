@@ -40,6 +40,7 @@ import os.path
 import re
 import sys
 import tarfile
+import json
 
 import numpy as np
 from six.moves import urllib
@@ -162,12 +163,25 @@ def run_inference_on_image(image):
     node_lookup = NodeLookup()
 
     top_k = predictions.argsort()[-FLAGS.num_top_predictions:][::-1]
+
+    ###################################################################
+    ################## in here they create prediction##################
+    ## tke this and write this to a file name text.txt in json format##
+    ###################################################################
+
+    response = {} ## empty dictionary ****
     for node_id in top_k:
       human_string = node_lookup.id_to_string(node_id)
       score = predictions[node_id]
+      ## storing the data in the dictionary with the score
+      ## you have to make the score str(score)
+      ## float32 is not supported for json
+      response[human_string] = str(score) ##***
       print('%s (score = %.5f)' % (human_string, score))
-
-
+    ##dump the dict in the text file in json format
+    with open('text.txt','w') as f:
+      json.dump(response,f)
+    #  f.write(str(response))
 def maybe_download_and_extract():
   """Download and extract model tar file."""
   dest_directory = FLAGS.model_dir

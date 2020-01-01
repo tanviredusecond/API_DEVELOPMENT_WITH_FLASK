@@ -1,0 +1,1 @@
+{"American alligator, Alligator mississipiensis": "0.81288016", "African crocodile, Nile crocodile, Crocodylus niloticus": "0.07123979", "mud turtle": "0.00089768367", "hippopotamus, hippo, river horse, Hippopotamus amphibius": "0.0007292394", "castle": "0.00059614476"}
