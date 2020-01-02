@@ -8,8 +8,14 @@ insted of just importin ternsorflow
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
+pip3 install -r requirment.txt
+=>python app.py
 
-
-command is 
-
-pytohn3 classify_image.py --image_file <file_name>
+=>two end point
+  1) /register {"username":<>
+                 "password":<>}
+  
+  2) /classify
+    {"username":<>,
+     "password":<>,
+     "url":<public image url>}
