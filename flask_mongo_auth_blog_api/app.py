@@ -41,6 +41,33 @@ posts_schema = PostSchema(many=True)
 ## for many post
 
 
+#todo
+def UserExists(username):
+    pass
+##todo
+def gendict(status,msg):
+    pass
+##todo
+def verify_pw(username,password):
+    ## user exists function goe here
+    pass
+## todo
+def verifyCredentials(username,password):
+    if not UserExists(username):
+        return gendict(301,"Invalid Username"),True 
+    if not verify_pw(username,password):
+        return gendict(302,"Invalid Password"),True
+    ##if user is authentic
+
+    return None,False
+
+## todo
+class register_user(Resource):
+    postdata = request.get_json()
+    username = postdata['username']
+    email    = postdata['email']
+
+
 ## create the post resources 
 class PostsListResources(Resource):
 
@@ -57,10 +84,8 @@ class PostListResources(Resource):
         posts = Post.query.join(User,Post.user_id==User.id).add_columns(User.username,User.email,Post.body,Post.timestamp).filter(Post.id==post_id)
         return posts_schema.dump(posts)
 
-    def post(self):
-       ## tou have to enter i two different database
-       ## first take every thing from the necesary 
-       ## its good if you have the mongodb
+    
+
 
 
 
